@@ -1,0 +1,41 @@
+
+IO (load/save)
+	NetCDF
+	text (file and regex)
+	numpy save (text and binary)
+	web
+
+Plotting
+	line
+	fill_between
+	scatter
+	contour
+	pcolormesh/pcolor/imshow
+	log axes
+	legend
+	errorbars
+	histogram
+	streamplot
+	quiver
+	link to colormap list
+	labels on plot
+	annotations
+	nested plots
+	latex in labels
+	subplots
+		tight axes
+		shared titles, colorbars
+	styles
+	date axis formatting
+	two axis scales # http://matplotlib.org/examples/api/two_scales.html
+	3D plotting
+	skew-T
+	basemap
+
+Animation
+
+Statistics
+
+Climate analysis
+
+
