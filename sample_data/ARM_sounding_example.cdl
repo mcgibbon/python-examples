@@ -1,0 +1,137 @@
+netcdf sgpsondewnpnC1 {
+dimensions:
+	time = UNLIMITED ; // (2951 currently)
+variables:
+	int base_time ;
+		base_time:string = "7-May-2002,11:24:00 GMT" ;
+		base_time:long_name = "Base time in Epoch" ;
+		base_time:units = "seconds since 1970-1-1 0:00:00 0:00" ;
+	double time_offset(time) ;
+		time_offset:long_name = "Time offset from base_time" ;
+		time_offset:units = "seconds since 2002-05-07 11:24:00 0:00" ;
+	float pres(time) ;
+		pres:long_name = "Pressure" ;
+		pres:units = "hPa" ;
+		pres:resolution = 0.1f ;
+		pres:missing_value = -9999.f ;
+	float tdry(time) ;
+		tdry:long_name = "Dry Bulb Temperature" ;
+		tdry:units = "C" ;
+		tdry:resolution = 0.1f ;
+		tdry:missing_value = -9999.f ;
+	float dp(time) ;
+		dp:long_name = "Dewpoint Temperature" ;
+		dp:units = "C" ;
+		dp:resolution = 0.1f ;
+		dp:missing_value = -9999.f ;
+	float wspd(time) ;
+		wspd:long_name = "Wind Speed" ;
+		wspd:units = "m/s" ;
+		wspd:resolution = 0.1f ;
+		wspd:missing_value = -9999.f ;
+	float deg(time) ;
+		deg:long_name = "Wind Direction" ;
+		deg:units = "deg" ;
+		deg:resolution = 1.f ;
+		deg:missing_value = -9999.f ;
+	float rh(time) ;
+		rh:long_name = "Relative Humidity" ;
+		rh:units = "%" ;
+		rh:resolution = 1.f ;
+		rh:missing_value = -9999.f ;
+	float u_wind(time) ;
+		u_wind:long_name = "Eastward Wind Component" ;
+		u_wind:units = "m/s" ;
+		u_wind:resolution = 0.1f ;
+		u_wind:missing_value = -9999.f ;
+		u_wind:Calculation = "(-1.0 * sin(wind direction) * wind speed)" ;
+	float v_wind(time) ;
+		v_wind:long_name = "Northward Wind Component" ;
+		v_wind:units = "m/s" ;
+		v_wind:resolution = 0.1f ;
+		v_wind:missing_value = -9999.f ;
+		v_wind:Calculation = "(-1.0 * cos(wind direction) * wind speed)" ;
+	float wstat(time) ;
+		wstat:long_name = "Wind Status" ;
+		wstat:units = "unitless" ;
+		wstat:missing_value = -9999.f ;
+	float asc(time) ;
+		asc:long_name = "Ascent Rate" ;
+		asc:units = "m/s" ;
+		asc:resolution = 0.1f ;
+		asc:missing_value = -9999.f ;
+	float lat(time) ;
+		lat:long_name = "north latitude" ;
+		lat:units = "degrees" ;
+		lat:valid_min = -90.f ;
+		lat:valid_max = 90.f ;
+	float lon(time) ;
+		lon:long_name = "east longitude" ;
+		lon:units = "degrees" ;
+		lon:valid_min = -180.f ;
+		lon:valid_max = 180.f ;
+	float alt(time) ;
+		alt:long_name = "altitude" ;
+		alt:units = "meters above Mean Sea Level" ;
+
+// global attributes:
+		:ingest_software = " sonde_ingest.c,v 5.10 2001/03/21 01:13:08 ermold Exp $" ;
+		:proc_level = "a1" ;
+		:input_source = "sonde1:/data/collection/sgp/sgpsondeC1.00/good.2002MAY071124.parsed" ;
+		:site_id = "sgp" ;
+		:facility_id = "C1 : Central_Facility" ;
+		:sample_int = "1.2 seconds" ;
+		:averaging_int = "None." ;
+		:comment = "The time assigned to each data point indicates the end of any \n",
+			"period of averaging of the geophysical data." ;
+		:resolution_description = "The resolution field attributes refer to the number of significant\n",
+			"digits relative to the decimal point that should be used in\n",
+			"calculations.  Using fewer digits might result in greater uncertainty;\n",
+			"using a larger number of digits should have no effect and thus is\n",
+			"unnecessary.  However, analyses based on differences in values with\n",
+			"a larger number of significant digits than indicated could lead to\n",
+			"erroneous results or misleading scientific conclusions.\n",
+			"\n",
+			"resolution for lat= 0.001\n",
+			"resolution for lon = 0.001\n",
+			"resolution for alt = 1" ;
+		:phase_fitting_2 = "" ;
+		:phase_fitting_3 = "" ;
+		:pressure_correction = "" ;
+		:temperature_correction = "" ;
+		:humidity_correction = "" ;
+		:launch_mode = "Nominal Mode" ;
+		:pressure_gc_sonde = "" ;
+		:temperature_gc_sonde = "" ;
+		:humidity_gc_sonde = "" ;
+		:latitude_calculation = "lat[k-1]+((v_wind[k]-v_wind[k-1])/2)*delta_time)/111137.0" ;
+		:longitude_calculation = "lon[k-1]+((u_wind[k]-u_wind[k-1])/2)*delta_time)/\n",
+			"(111137.0*(cos(0.5*lat[k]-lat[k-1)))) " ;
+		:sonde_pc_software_version = "8.29" ;
+		:phase_fitting_1 = "Phase fitting length is  60 s from   0 min to 120 min\r\n",
+			"" ;
+		:sounding_number = "100507023" ;
+		:serial_number = "W4712017" ;
+		:launch_status = "\n",
+			"100507023 SGP/CART/CF/MW15\r\n",
+			"74646\r\n",
+			"020507 1124\r\n",
+			" W4712017\r\n",
+			"/// /// ///\r\n",
+			"097\r\n",
+			"092 006 003\r\n",
+			"096 001 003\r\n",
+			"095 002 003\r\n",
+			"009 006 006\r\n",
+			"590 005 267\r\n",
+			"100 100 084\r\n",
+			"100 100 000\r\n",
+			"100 100\r\n",
+			"090 099 100\r\n",
+			"\n",
+			"" ;
+		:zeb_platform = "sgpsondewnpnC1.a1" ;
+		:history = "created by the Zebra DataStore library, 7-May-2002,14:02:00, $RCSfile: DFA_NetCDF.c,v $ $Revision: 3.53 $\n",
+			"" ;
+data:
+}
