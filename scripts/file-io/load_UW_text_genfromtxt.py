@@ -1,8 +1,15 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Jun  3 11:58:18 2015
+load_UW_text.py: an example for loading UW formatted text data using the
+genfromtxt command in numpy. For data formatting see the file loaded in
+the script below.
 
-@author: mcgibbon
+This code is released into the public domain. For full details, see
+UNLICENSE at the root of this project. In essence, you can copy and use this
+code for whatever purpose, with or without attribution.
+
+If you have any questions about the code or could use any sort of help using
+it, feel free to e-mail me at mcgibbon (at) uw {dot} edu.
 """
 import numpy as np
 # "datetime" is an object in the "datetime" module"
