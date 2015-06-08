@@ -14,9 +14,12 @@ import numpy as np
 # "datetime" is an object in the "datetime" module"
 from datetime import datetime
 
+# This 'if' statement should always be put at the start of your
+# 'script' section after any function or class definitions, or global
+# variables.
 if __name__ == '__main__':
     # name of an example data file
-    filename = '../../UW_apu30_2015_0328.txt'
+    filename = '../../sample_data/UW_apu30_2015_0328.txt'
     # first argument is name of file
     # skip_header says how many lines to skip at the start of the file,
     #     default is 0.
@@ -27,7 +30,7 @@ if __name__ == '__main__':
     # we could now use the data directly from this array, but there are a few
     # ways to make it easier to read your code
 
-    # if you know the names of the columns, you can make a tuple in your code
+    # if you know the names of the columns, you can make a tuple in yourcode
     column_names = ['Year', 'MM', 'DD', 'Jday', 'hh', 'mm', 'Conc', 'LWC',
                     'Rain', 'dBZ', 'Dm', 'DMax', 'Sigma_M', 'Wx_Code4677']
     # OR
@@ -59,10 +62,15 @@ if __name__ == '__main__':
     # initialize a list in which to put our datetimes
     datetime_list = []
     for i in range(len(data_dict['Year'])):
-        # make the new datetime
-        new_datetime = datetime(data_dict['Year'][i], data_dict['MM'][i],
-                                data_dict['DD'][i], data_dict['hh'][i],
-                                data_dict['mm'][i])
+        # make the new datetime. all arguments must be integers
+        new_datetime = datetime(int(data_dict['Year'][i]),
+                                int(data_dict['MM'][i]),
+                                int(data_dict['DD'][i]),
+                                int(data_dict['hh'][i]),
+                                int(data_dict['mm'][i]))
+        # a more elegant way to do this:
+        # new_datetime = datetime(*[int(data_dict[key][i]) for key in
+        #                           ('Year', 'MM', 'DD', 'hh', 'mm')])
         # add the datetime to our list
         datetime_list.append(new_datetime)
     # If you like, you can make an array of datetimes
