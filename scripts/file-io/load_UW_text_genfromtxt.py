@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-load_UW_text.py: An example using numpy's genfromtxt function to load text
-data formatted like UW's meteorological text files.
+load_UW_text.py: an example for loading UW formatted text data using the
+genfromtxt command in numpy. For data formatting see the file loaded in
+the script below.
 
 This code is released into the public domain. For full details, see
 UNLICENSE at the root of this project. In essence, you can copy and use this
