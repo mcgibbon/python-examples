@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-for_loop.py: this script shows examples of for loops
+for_loop.py: this script shows examples of for loops.
 
 This code is released into the public domain. For full details, see
 UNLICENSE at the root of this project. In essence, you can copy and use this
