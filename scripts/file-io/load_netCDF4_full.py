@@ -73,6 +73,11 @@ if __name__ == '__main__':
     print('array dtype: {}'.format(time.dtype))
     print('item type: {}'.format(type(time[0])))
 
+    # If you would like instead to get the indices of a dataset that correspond
+    # to a given array of datetimes, you can use the date2index method
+    # described here:
+    # http://unidata.github.io/netcdf4-python/#netCDF4.date2index
+
     # Datasets will be closed at the end of your script, but can also be
     # closed manually.
     dataset.close()
