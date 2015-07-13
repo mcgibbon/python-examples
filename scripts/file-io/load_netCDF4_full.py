@@ -27,11 +27,13 @@ if __name__ == '__main__':
     T = dataset.variables['tdry']
     # attributes of netcdf variables are stored as attributes of Variable
     # objects
+    print('Some variable attributes:')
     print(p.long_name)
     print(p.units)
     print(T.long_name)
     print(T.units)
     # the same is true of Dataset objects
+    print('Dataset history:')
     print(dataset.history)
     # Math operations do not work on variables, and need numpy
     # arrays instead. To get the array only, use [:] or any kind of slicing
@@ -46,8 +48,31 @@ if __name__ == '__main__':
         print('Raised TypeError for numpy array.')
     # Note that since these are now numpy arrays, we *cannot* access
     # attributes of those variables
-    print(hasattr(p[:], 'long_name'))
-    print(hasattr(p, 'long_name'))
+    print('hassattr with [:]: {}'.format(hasattr(p[:], 'long_name')))
+    print('hassattr without [:]: {}'.format(hasattr(p, 'long_name')))
+
+    # Time is usually stored in netCDF files in very odd units. You probably
+    # would rather use an array of datetime objects instead.
+    # *If* your netCDF file follows the standard convention of 
+    # "<unit> since YY:MM:DD hh-mm-ss", you can do this with num2date.
+    # num2date takes in the *array* of time as its first argument, and the
+    # units as its second argument. If you need a specific calendar, you
+    # can specify this with an additional keyword argument. Default is
+    # 'standard'.
+    time = nc4.num2date(dataset.variables['time_offset'][:],
+                        units=dataset.variables['time_offset'].units)
+    # or
+    time = nc4.num2date(dataset.variables['time_offset'][:],
+                        units=dataset.variables['time_offset'].units,
+                        calendar='standard')
+    # if you get the error TypeError: __array__() takes no arguments (1 given),
+    # it is probably because you did not put [:] after the time variable
+    # object.
+
+    # Note the returned array is an array of datetimes, not datetime64.
+    print('array dtype: {}'.format(time.dtype))
+    print('item type: {}'.format(type(time[0])))
+
     # Datasets will be closed at the end of your script, but can also be
     # closed manually.
     dataset.close()
