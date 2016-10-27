@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-load_netcdf_simple.py: an example on loading data from a netCDF file. Only
-the most commonly-performed operations are covered in this file. For a more
-extensive set of operations, see load_netcdf_full.py.
+load_save_xarray.py: an example on manipulating netCDF data using xarray.
 
 This code is released into the public domain. For full details, see
 UNLICENSE at the root of this project. In essence, you can copy and use this
