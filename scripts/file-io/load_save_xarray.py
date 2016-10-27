@@ -13,10 +13,13 @@ it, feel free to e-mail me at mcgibbon (at) uw {dot} edu.
 import xarray as xr
 from glob import glob  # used to get file paths
 
+def my_netcdf_load_function(filename):
+    return xr.open_dataset(filename)
+
 # This 'if' statement should always be put at the start of your
 # 'script' section after any function or class definitions, or global
 # variables.
-if __name__ == '__main__':
+if True:#__name__ == '__main__':
     dataset = xr.open_dataset('../../sample_data/ARM_sounding_example.nc')
     # data is stored in the dataset.data_vars dictionary
     # its keys are variable names, and values are Variable objects
@@ -36,11 +39,12 @@ if __name__ == '__main__':
     print(dataset.data_vars['atmos_pressure'])  # who uses kPa anyways???
 
     # Wrong:
-    # dataset.data_vars['atmos_pressure'] *= 1000.
-    # dataset['atmos_pressure'].units = 'Pa'
+    # dataset.data_vars['atmos_pressure'] = dataset.data_vars['atmos_pressure'] * 1000.
+    # dataset['atmos_pressure'].units = 'Pa'  # errors
+    # dataset['atmos_pressure']['units'] = 'Pa'  # doesn't change unit
     # Right:
-    dataset['atmos_pressure'].values *= 1000.
-    dataset['atmos_pressure']['units'] = 'Pa'
+    dataset['atmos_pressure'].values = dataset['atmos_pressure'].values * 1000.
+    dataset['atmos_pressure'].attrs['units'] = 'Pa'
 
     # This dataset also failed to identify 'time_offset' as the time axis. Let's fix it.
     print('\n----- Old time variable:')
@@ -56,7 +60,7 @@ if __name__ == '__main__':
     print(dataset['time'])
 
     # We can resample the data to be hourly instead of 1-minute:
-    dataset = dataset.resample('1H', dim='time', how='mean')
+    dataset = dataset.resample('1H', dim='time', how='mean', keep_attrs=True)
     print('\n----- Resampled hourly dataset:')
     print(dataset)
 
